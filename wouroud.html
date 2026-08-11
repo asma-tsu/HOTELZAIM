@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Woroud — Hôtel de Blida, Algérie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --burgundy-1:#3A0D18;
+    --burgundy-2:#4A101D;
+    --wine:#21080F;
+    --near-black:#16090D;
+    --gold-1:#B89A5A;
+    --gold-2:#C8AD72;
+    --ivory:#F7F2E9;
+    --champagne:#EFE3CC;
+    --ink:#1A0B0F;
+    --glass-burgundy: rgba(74,16,29,0.42);
+    --glass-white: rgba(247,242,233,0.08);
+    --glass-border: rgba(200,173,114,0.35);
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope', sans-serif;
+    background:var(--ivory);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img,svg{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit; cursor:pointer; border:none; background:none;}
+
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    letter-spacing:0.01em;
+  }
+  .eyebrow{
+    font-family:'Manrope',sans-serif;
+    font-size:12px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    font-weight:600;
+  }
+  .gold{color:var(--gold-2);}
+  .gold-line{
+    width:52px; height:1px;
+    background:linear-gradient(90deg,var(--gold-1),transparent);
+  }
+  .gold-line.center{margin:0 auto;}
+
+  section{position:relative;}
+  .wrap{max-width:1280px; margin:0 auto; padding:0 40px;}
+  @media (max-width:768px){ .wrap{padding:0 22px;} }
+
+  /* ---------------- PLACEHOLDER PHOTOGRAPHY ---------------- */
+  .ph{
+    position:relative;
+    overflow:hidden;
+    background:
+      radial-gradient(120% 140% at 20% 0%, rgba(184,154,90,0.16), transparent 55%),
+      linear-gradient(160deg, #2c0a13 0%, #180810 60%, #10060a 100%);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .ph::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(115deg, rgba(200,173,114,0.05) 0 2px, transparent 2px 26px);
+    opacity:.5;
+  }
+  .ph .ph-label{
+    position:relative; z-index:2;
+    text-align:center;
+    color:rgba(239,227,204,0.55);
+    font-family:'Manrope',sans-serif;
+    font-size:11px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    border:1px solid rgba(200,173,114,0.3);
+    padding:10px 18px;
+    border-radius:2px;
+    backdrop-filter:blur(2px);
+  }
+  .ph .ph-label span{display:block; font-size:9px; opacity:.7; margin-top:4px; letter-spacing:0.1em;}
+
+  /* ================= NAV ================= */
+  .nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 40px;
+    transition: background .5s var(--ease), padding .5s var(--ease), border-color .5s var(--ease);
+    border-bottom:1px solid transparent;
+  }
+  .nav.scrolled{
+    padding:14px 40px;
+    background:rgba(22,9,13,0.82);
+    backdrop-filter:blur(18px) saturate(140%);
+    -webkit-backdrop-filter:blur(18px) saturate(140%);
+    border-bottom:1px solid rgba(200,173,114,0.22);
+  }
+  .brand{display:flex; flex-direction:column; line-height:1;}
+  .brand .name{
+    font-family:'Cormorant Garamond', serif;
+    font-size:22px; letter-spacing:0.12em; color:var(--ivory); font-weight:500;
+  }
+  .brand .group{
+    font-size:8.5px; letter-spacing:0.22em; color:var(--gold-2);
+    margin-top:5px; text-transform:uppercase; opacity:.85;
+  }
+  .nav-links{
+    display:flex; gap:34px; list-style:none;
+  }
+  .nav-links a{
+    font-size:12.5px; letter-spacing:0.06em; color:var(--champagne);
+    position:relative; padding-bottom:4px; opacity:.9;
+    transition:opacity .3s var(--ease), color .3s var(--ease);
+  }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:0; width:0; height:1px;
+    background:var(--gold-2); transition:width .4s var(--ease);
+  }
+  .nav-links a:hover{opacity:1;}
+  .nav-links a:hover::after{width:100%;}
+  .nav-right{display:flex; align-items:center; gap:22px;}
+  .lang{display:flex; gap:8px; font-size:11px; letter-spacing:0.06em; color:var(--champagne); opacity:.8;}
+  .lang span{cursor:pointer;}
+  .lang span.active{color:var(--gold-2);}
+  .btn-glass{
+    padding:10px 22px;
+    font-size:11.5px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ivory);
+    background:rgba(200,173,114,0.14);
+    border:1px solid var(--glass-border);
+    border-radius:2px;
+    backdrop-filter:blur(6px);
+    transition:background .35s var(--ease), border-color .35s var(--ease), transform .35s var(--ease);
+  }
+  .btn-glass:hover{background:rgba(200,173,114,0.26); border-color:var(--gold-2); transform:translateY(-1px);}
+  .nav-toggle{display:none; flex-direction:column; gap:5px; width:26px;}
+  .nav-toggle span{height:1px; background:var(--ivory); width:100%;}
+  @media (max-width:980px){
+    .nav-links{display:none;}
+    .lang{display:none;}
+    .nav-toggle{display:flex;}
+  }
+
+  /* ================= HERO ================= */
+  .hero{
+    height:100svh; min-height:640px;
+    position:relative;
+    display:flex; flex-direction:column; justify-content:flex-end;
+  }
+  .hero .ph{position:absolute; inset:0;}
+  .hero-scrim{
+    position:absolute; inset:0;
+    background:
+      linear-gradient(180deg, rgba(16,6,10,0.35) 0%, rgba(16,6,10,0.15) 30%, rgba(16,6,10,0.55) 78%, rgba(16,6,10,0.85) 100%);
+  }
+  .hero-content{
+    position:relative; z-index:3;
+    padding:0 40px 190px;
+    max-width:760px;
+  }
+  .hero-content .eyebrow{color:var(--gold-2); opacity:0; animation:riseFade .9s var(--ease) .2s forwards;}
+  .hero-content h1{
+    font-size:clamp(46px,7vw,88px);
+    color:var(--ivory);
+    line-height:1.02;
+    margin:18px 0 22px;
+    opacity:0; animation:riseFade 1s var(--ease) .4s forwards;
+  }
+  .hero-content h1 em{font-style:italic; color:var(--gold-2);}
+  .hero-content p{
+    font-size:16px; line-height:1.7; color:var(--champagne); max-width:480px; font-weight:300;
+    opacity:0; animation:riseFade 1s var(--ease) .6s forwards;
+  }
+  .hero-ctas{
+    margin-top:34px; display:flex; gap:18px; align-items:center; flex-wrap:wrap;
+    opacity:0; animation:riseFade 1s var(--ease) .8s forwards;
+  }
+  .btn-gold{
+    padding:15px 30px;
+    background:linear-gradient(135deg, var(--gold-2), var(--gold-1));
+    color:var(--wine);
+    font-size:12px; letter-spacing:0.14em; text-transform:uppercase; font-weight:600;
+    border-radius:2px;
+    transition:transform .35s var(--ease), box-shadow .35s var(--ease);
+  }
+  .btn-gold:hover{transform:translateY(-2px); box-shadow:0 14px 30px -12px rgba(184,154,90,0.55);}
+  .btn-ghost{
+    font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ivory);
+    display:flex; align-items:center; gap:8px; opacity:.85;
+  }
+  .btn-ghost span{display:inline-block; transition:transform .4s var(--ease);}
+  .btn-ghost:hover span{transform:translateY(4px);}
+
+  @keyframes riseFade{ from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);} }
+
+  /* ---------- booking widget ---------- */
+  .booking{
+    position:absolute; left:0; right:0; bottom:-38px; z-index:4;
+    margin:0 40px;
+  }
+  .booking-panel{
+    background:rgba(58,13,24,0.5);
+    border:1px solid var(--glass-border);
+    backdrop-filter:blur(22px) saturate(160%);
+    -webkit-backdrop-filter:blur(22px) saturate(160%);
+    border-radius:4px;
+    box-shadow:0 30px 60px -25px rgba(16,6,10,0.6);
+    padding:6px;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 1fr auto;
+  }
+  .b-field{
+    padding:16px 22px;
+    border-right:1px solid rgba(247,242,233,0.12);
+  }
+  .b-field:last-of-type{border-right:none;}
+  .b-field label{
+    display:block; font-size:9.5px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--gold-2); margin-bottom:6px; opacity:.9;
+  }
+  .b-field .val{font-size:14.5px; color:var(--ivory); font-weight:400;}
+  .b-field .sub{font-size:11px; color:rgba(247,242,233,0.55); margin-top:2px;}
+  .b-cta{
+    display:flex; align-items:center; justify-content:center;
+    padding:0 26px;
+  }
+  .b-cta button{
+    white-space:nowrap;
+    padding:15px 24px;
+    background:linear-gradient(135deg, var(--gold-2), var(--gold-1));
+    color:var(--wine); font-size:11.5px; letter-spacing:0.1em; text-transform:uppercase; font-weight:700;
+    border-radius:2px; transition:transform .3s var(--ease);
+  }
+  .b-cta button:hover{transform:translateY(-2px);}
+  @media (max-width:980px){
+    .booking-panel{grid-template-columns:1fr 1fr;}
+    .b-field{border-bottom:1px solid rgba(247,242,233,0.12);}
+    .b-cta{grid-column:1 / -1; padding:14px;}
+    .b-cta button{width:100%;}
+  }
+
+  /* ================= INTRO ================= */
+  .intro{
+    padding:220px 0 130px;
+    background:var(--ivory);
+  }
+  .intro-grid{
+    display:grid; grid-template-columns:0.95fr 1.05fr; gap:70px; align-items:center;
+  }
+  .intro-text .eyebrow{color:var(--burgundy-2);}
+  .intro-text h2{
+    font-size:clamp(32px,3.6vw,50px); color:var(--wine); margin:20px 0 24px; line-height:1.08;
+  }
+  .intro-text p{font-size:16px; line-height:1.8; color:#4a3a3c; max-width:440px; font-weight:300;}
+  .intro-text .gold-line{margin:26px 0;}
+  .intro-photo .ph{aspect-ratio:4/5; border-radius:2px;}
+  @media (max-width:900px){
+    .intro-grid{grid-template-columns:1fr; gap:36px;}
+    .intro{padding:140px 0 90px;}
+  }
+
+  /* ================= HIGHLIGHTS ================= */
+  .highlights{padding:0 0 130px; background:var(--ivory);}
+  .h-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:rgba(58,13,24,0.12);
+    border-top:1px solid rgba(58,13,24,0.14);
+    border-bottom:1px solid rgba(58,13,24,0.14);
+  }
+  .h-card{
+    background:var(--ivory);
+    padding:44px 30px;
+    transition:background .4s var(--ease);
+  }
+  .h-card:hover{background:#fdfbf6;}
+  .h-icon{width:26px; height:26px; margin-bottom:22px;}
+  .h-icon svg{stroke:var(--gold-1); fill:none; stroke-width:1.1;}
+  .h-card h3{font-size:19px; color:var(--wine); margin-bottom:8px; letter-spacing:0.01em; font-weight:500;}
+  .h-card p{font-size:13px; color:#7a6567; line-height:1.6; font-weight:300;}
+  @media (max-width:900px){ .h-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .h-grid{grid-template-columns:1fr;} }
+
+  /* ================= ROOMS ================= */
+  .rooms{padding:130px 0; background:var(--ivory);}
+  .section-head{text-align:center; max-width:600px; margin:0 auto 64px;}
+  .section-head .eyebrow{color:var(--burgundy-2);}
+  .section-head h2{font-size:clamp(32px,4vw,54px); color:var(--wine); margin:18px 0 0; line-height:1.06;}
+  .rooms-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:26px;
+  }
+  .room-card{
+    position:relative; aspect-ratio:3/4; overflow:hidden; border-radius:2px;
+    border:1px solid rgba(58,13,24,0.1);
+  }
+  .room-card .ph{position:absolute; inset:0; transition:transform .8s var(--ease);}
+  .room-card:hover .ph{transform:scale(1.06);}
+  .room-overlay{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(33,8,15,0) 30%, rgba(33,8,15,0.9) 100%);
+    opacity:.75; transition:opacity .5s var(--ease);
+  }
+  .room-card:hover .room-overlay{opacity:.92;}
+  .room-frame{
+    position:absolute; inset:10px; border:1px solid transparent; border-radius:1px;
+    transition:border-color .5s var(--ease);
+  }
+  .room-card:hover .room-frame{border-color:rgba(200,173,114,0.55);}
+  .room-info{
+    position:absolute; left:26px; right:26px; bottom:24px; z-index:2;
+    transition:transform .5s var(--ease);
+  }
+  .room-card:hover .room-info{transform:translateY(-6px);}
+  .room-info .rtag{font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold-2); opacity:.9;}
+  .room-info h3{font-size:26px; color:var(--ivory); margin:8px 0 6px; font-weight:500;}
+  .room-info p{font-size:12.5px; color:rgba(247,242,233,0.7); font-weight:300; margin-bottom:14px;}
+  .room-discover{
+    display:flex; align-items:center; gap:8px; font-size:11.5px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--ivory); opacity:0; transform:translateY(6px);
+    transition:opacity .4s var(--ease), transform .4s var(--ease);
+  }
+  .room-card:hover .room-discover{opacity:1; transform:translateY(0);}
+  @media (max-width:980px){ .rooms-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:640px){ .rooms-grid{grid-template-columns:1fr;} }
+  .rooms-more{text-align:center; margin-top:50px;}
+  .btn-outline{
+    display:inline-block; padding:14px 30px; border:1px solid var(--wine); color:var(--wine);
+    font-size:11.5px; letter-spacing:0.14em; text-transform:uppercase;
+    transition:background .35s var(--ease), color .35s var(--ease);
+  }
+  .btn-outline:hover{background:var(--wine); color:var(--ivory);}
+
+  /* ================= DARK BOOKING CTA ================= */
+  .cta-dark{
+    padding:150px 0;
+    background:
+      radial-gradient(70% 60% at 50% 0%, rgba(184,154,90,0.10), transparent 60%),
+      linear-gradient(180deg, var(--near-black), var(--wine));
+    text-align:center;
+  }
+  .cta-dark .eyebrow{color:var(--gold-2);}
+  .cta-dark h2{font-size:clamp(34px,4.6vw,58px); color:var(--ivory); margin:18px 0 46px;}
+  .form-panel{
+    max-width:980px; margin:0 auto;
+    background:rgba(247,242,233,0.05);
+    border:1px solid var(--glass-border);
+    backdrop-filter:blur(18px);
+    border-radius:4px;
+    padding:8px;
+    display:grid; grid-template-columns:repeat(5,1fr);
+  }
+  .form-panel .b-field{border-right:1px solid rgba(247,242,233,0.1); text-align:left;}
+  .form-panel .b-field:last-child{border-right:none;}
+  @media (max-width:900px){
+    .form-panel{grid-template-columns:1fr 1fr;}
+    .form-panel .b-field{border-bottom:1px solid rgba(247,242,233,0.1);}
+  }
+
+  /* ================= GASTRONOMY ================= */
+  .gastro{
+    padding:150px 0; background:var(--burgundy-1); color:var(--ivory); overflow:hidden;
+  }
+  .gastro-top{text-align:center; max-width:600px; margin:0 auto 60px;}
+  .gastro-top .eyebrow{color:var(--gold-2);}
+  .gastro-top h2{font-size:clamp(32px,4vw,52px); margin:18px 0 0;}
+  .gastro-grid{display:grid; grid-template-columns:1.3fr 0.9fr; gap:20px;}
+  .gastro-grid .ph{border-radius:2px;}
+  .gastro-grid .big{aspect-ratio:16/11;}
+  .gastro-side{display:grid; gap:20px;}
+  .gastro-side .ph{aspect-ratio:16/8;}
+  .gastro-tags{
+    display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:52px;
+  }
+  .tag-pill{
+    padding:10px 20px; border:1px solid rgba(200,173,114,0.35); border-radius:30px;
+    font-size:12px; letter-spacing:0.06em; color:var(--champagne);
+  }
+  @media (max-width:860px){ .gastro-grid{grid-template-columns:1fr;} }
+
+  /* ================= WELLNESS ================= */
+  .wellness{padding:150px 0; background:var(--near-black); color:var(--ivory);}
+  .well-grid{display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center;}
+  .well-text .eyebrow{color:var(--gold-2);}
+  .well-text h2{font-size:clamp(32px,4vw,50px); margin:18px 0 26px;}
+  .well-list{list-style:none; display:grid; gap:18px; margin-top:8px;}
+  .well-list li{
+    display:flex; align-items:center; gap:14px; font-size:15px; color:var(--champagne); font-weight:300;
+    padding-bottom:16px; border-bottom:1px solid rgba(247,242,233,0.1);
+  }
+  .well-list li .dot{width:5px; height:5px; border-radius:50%; background:var(--gold-2);}
+  .well-photo .ph{aspect-ratio:4/5; border-radius:2px;}
+  @media (max-width:900px){ .well-grid{grid-template-columns:1fr; gap:36px;} }
+
+  /* ================= EVENTS ================= */
+  .events{padding:150px 0; background:var(--ivory);}
+  .events-grid{display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center;}
+  .events-photo .ph{aspect-ratio:5/6; border-radius:2px;}
+  .events-text .eyebrow{color:var(--burgundy-2);}
+  .events-text h2{font-size:clamp(32px,4vw,50px); color:var(--wine); margin:18px 0 24px;}
+  .events-text p{font-size:15.5px; color:#4a3a3c; line-height:1.8; font-weight:300; max-width:440px; margin-bottom:30px;}
+  .events-tags{display:flex; flex-wrap:wrap; gap:12px; margin-bottom:34px;}
+  .events-tags span{
+    font-size:11.5px; letter-spacing:0.06em; color:var(--wine);
+    border:1px solid rgba(58,13,24,0.25); padding:9px 16px; border-radius:30px;
+  }
+  @media (max-width:900px){ .events-grid{grid-template-columns:1fr; gap:36px;} .events-grid{direction:ltr;} }
+
+  /* ================= GALLERY ================= */
+  .gallery{padding:150px 0 150px; background:var(--wine); color:var(--ivory);}
+  .gallery-head{padding:0 40px; margin-bottom:44px; display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:20px;}
+  .gallery-head .eyebrow{color:var(--gold-2);}
+  .gallery-head h2{font-size:clamp(30px,3.6vw,46px); margin-top:14px;}
+  .gallery-track{
+    display:flex; gap:20px; overflow-x:auto; padding:0 40px 20px;
+    scroll-snap-type:x proximity;
+    scrollbar-width:thin;
+  }
+  .gallery-track::-webkit-scrollbar{height:4px;}
+  .gallery-track::-webkit-scrollbar-thumb{background:rgba(200,173,114,0.4);}
+  .gallery-item{
+    flex:0 0 auto; width:340px; aspect-ratio:3/4; scroll-snap-align:start; border-radius:2px; overflow:hidden;
+  }
+  .gallery-item .ph{width:100%; height:100%;}
+  @media (max-width:640px){ .gallery-item{width:260px;} }
+
+  /* ================= LOCATION ================= */
+  .location{padding:130px 0; background:var(--ivory);}
+  .loc-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
+  .loc-text .eyebrow{color:var(--burgundy-2);}
+  .loc-text h2{font-size:clamp(32px,4vw,50px); color:var(--wine); margin:18px 0 20px;}
+  .loc-text p{color:#4a3a3c; font-size:15px; line-height:1.8; font-weight:300; margin-bottom:26px; max-width:400px;}
+  .map-box{
+    aspect-ratio:16/11; border-radius:2px; overflow:hidden; position:relative;
+    background:
+      linear-gradient(160deg,#efe6d3,#e4d7bb);
+    border:1px solid rgba(58,13,24,0.14);
+  }
+  .map-box::before{
+    content:""; position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(58,13,24,0.06) 0 1px, transparent 1px 34px),
+      repeating-linear-gradient(90deg, rgba(58,13,24,0.06) 0 1px, transparent 1px 34px);
+  }
+  .map-pin{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-100%);
+    display:flex; flex-direction:column; align-items:center;
+  }
+  .map-pin .pin-dot{
+    width:16px; height:16px; border-radius:50% 50% 50% 0; background:var(--burgundy-2);
+    transform:rotate(-45deg); box-shadow:0 6px 14px -4px rgba(58,13,24,0.5);
+    border:1px solid var(--gold-2);
+  }
+  .map-pin .pin-label{
+    margin-top:10px; background:rgba(58,13,24,0.9); color:var(--ivory); font-size:11px;
+    padding:6px 12px; border-radius:2px; letter-spacing:0.04em; white-space:nowrap;
+  }
+  @media (max-width:900px){ .loc-grid{grid-template-columns:1fr; gap:34px;} }
+
+  /* ================= TESTIMONIALS ================= */
+  .testi{padding:130px 0 150px; background:var(--burgundy-1); color:var(--ivory);}
+  .testi-head{text-align:center; max-width:600px; margin:0 auto 56px;}
+  .testi-head .eyebrow{color:var(--gold-2);}
+  .testi-head h2{font-size:clamp(30px,3.8vw,48px); margin:18px 0 0;}
+  .testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .testi-card{
+    background:rgba(247,242,233,0.06);
+    border:1px solid rgba(200,173,114,0.22);
+    backdrop-filter:blur(14px);
+    border-radius:3px; padding:32px 28px;
+  }
+  .testi-stars{color:var(--gold-2); font-size:13px; letter-spacing:2px; margin-bottom:16px;}
+  .testi-card p{font-size:14.5px; line-height:1.75; font-weight:300; color:var(--champagne); margin-bottom:22px;}
+  .testi-name{font-size:13.5px; color:var(--ivory); font-weight:500;}
+  .testi-role{font-size:11.5px; color:rgba(247,242,233,0.5); margin-top:2px;}
+  .testi-note{
+    text-align:center; margin-top:34px; font-size:11.5px; color:rgba(247,242,233,0.45); letter-spacing:0.02em;
+  }
+  @media (max-width:900px){ .testi-grid{grid-template-columns:1fr;} }
+
+  /* ================= FINAL CTA ================= */
+  .final-cta{
+    padding:180px 0; text-align:center; position:relative; overflow:hidden;
+    background:linear-gradient(180deg, var(--wine), var(--near-black));
+  }
+  .final-cta::before{
+    content:""; position:absolute; left:50%; top:20%; width:600px; height:600px; transform:translateX(-50%);
+    background:radial-gradient(circle, rgba(184,154,90,0.16), transparent 65%);
+    filter:blur(20px);
+  }
+  .final-cta .eyebrow{color:var(--gold-2); position:relative;}
+  .final-cta h2{font-size:clamp(38px,6vw,72px); color:var(--ivory); margin:20px 0 16px; position:relative;}
+  .final-cta p{color:var(--champagne); font-weight:300; margin-bottom:40px; position:relative;}
+  .final-ctas{display:flex; gap:20px; justify-content:center; flex-wrap:wrap; position:relative;}
+
+  /* ================= FOOTER ================= */
+  footer{background:var(--near-black); color:var(--champagne); padding:90px 0 30px;}
+  .footer-top{
+    display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr 1fr; gap:40px;
+    padding-bottom:60px; border-bottom:1px solid rgba(247,242,233,0.08);
+  }
+  .footer-brand .name{font-family:'Cormorant Garamond',serif; font-size:24px; color:var(--ivory); letter-spacing:0.08em;}
+  .footer-brand .group{font-size:9px; letter-spacing:0.2em; color:var(--gold-2); margin-top:8px; text-transform:uppercase;}
+  .footer-brand p{font-size:13px; margin-top:20px; color:rgba(247,242,233,0.5); line-height:1.7; max-width:260px; font-weight:300;}
+  .f-col h4{font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-2); margin-bottom:18px;}
+  .f-col ul{list-style:none; display:grid; gap:11px;}
+  .f-col a{font-size:13.5px; color:rgba(247,242,233,0.7); transition:color .3s var(--ease);}
+  .f-col a:hover{color:var(--ivory);}
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center; padding-top:26px; flex-wrap:wrap; gap:14px;
+  }
+  .footer-bottom p{font-size:12px; color:rgba(247,242,233,0.4);}
+  .footer-legal{display:flex; gap:22px;}
+  .footer-legal a{font-size:12px; color:rgba(247,242,233,0.4);}
+  .footer-legal a:hover{color:var(--ivory);}
+  @media (max-width:900px){
+    .footer-top{grid-template-columns:1fr 1fr; gap:36px;}
+  }
+
+  /* mobile sticky booking */
+  .mobile-book{
+    display:none; position:fixed; bottom:0; left:0; right:0; z-index:90;
+    padding:14px 18px; background:rgba(22,9,13,0.92); backdrop-filter:blur(14px);
+    border-top:1px solid rgba(200,173,114,0.25);
+  }
+  .mobile-book button{
+    width:100%; padding:15px; background:linear-gradient(135deg,var(--gold-2),var(--gold-1));
+    color:var(--wine); font-size:12.5px; letter-spacing:0.12em; text-transform:uppercase; font-weight:700; border-radius:2px;
+  }
+  @media (max-width:980px){
+    .booking{display:none;}
+    .mobile-book{display:block;}
+    .intro,.rooms,.cta-dark,.gastro,.wellness,.events,.gallery,.location,.testi{padding-top:90px; padding-bottom:90px;}
+    .final-cta{padding:120px 0;}
+    body{padding-bottom:70px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <div class="brand">
+    <span class="name">EL WOROUD</span>
+    <span class="group">Zaim Mohamed</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="#chambres">Chambres</a></li>
+    <li><a href="#experience">Expérience</a></li>
+    <li><a href="#gastronomie">Gastronomie</a></li>
+    <li><a href="#bien-etre">Bien-être</a></li>
+    <li><a href="#evenements">Événements</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang">
+      <span class="active">FR</span><span>·</span><span>AR</span><span>·</span><span>EN</span>
+    </div>
+    <a href="#reserver" class="btn-glass">Réserver</a>
+    <div class="nav-toggle"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="accueil">
+  <div class="ph">
+    <img src="ChatGPT Image Aug 11, 2026, 09_42_19 PM.png" alt="Photographie d'illustration — à remplacer par une photo de l'hôtel" />
+  </div>
+  <div class="hero-scrim"></div>
+  <div class="hero-content">
+    <p class="eyebrow">Hôtel · Blida · Algérie</p>
+    <h1>Un séjour<br><em>d'exception.</em></h1>
+    <p>Découvrez El Woroud, une adresse où l'élégance, le confort et l'hospitalité se rencontrent, au cœur de la ville des roses.</p>
+    <div class="hero-ctas">
+      <a href="#reserver" class="btn-gold">Réserver votre séjour</a>
+      <a href="#decouvrir" class="btn-ghost">Découvrir l'hôtel <span>↓</span></a>
+    </div>
+  </div>
+
+  <div class="booking" id="reserver">
+    <div class="booking-panel">
+      <div class="b-field">
+        <label>Arrivée</label>
+        <div class="val">Choisir une date</div>
+        <div class="sub">jj / mm / aaaa</div>
+      </div>
+      <div class="b-field">
+        <label>Départ</label>
+        <div class="val">Choisir une date</div>
+        <div class="sub">jj / mm / aaaa</div>
+      </div>
+      <div class="b-field">
+        <label>Adultes</label>
+        <div class="val">2 adultes</div>
+        <div class="sub">0 enfant</div>
+      </div>
+      <div class="b-field">
+        <label>Chambres</label>
+        <div class="val">1 chambre</div>
+        <div class="sub">Modifier</div>
+      </div>
+      <div class="b-cta">
+        <button>Vérifier la disponibilité</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTRO ============ -->
+<section class="intro" id="decouvrir">
+  <div class="wrap intro-grid">
+    <div class="intro-photo">
+      <div class="ph"><div class="ph-label">Photographie architecturale<span>Façade ou hall d'entrée — à intégrer</span></div></div>
+    </div>
+    <div class="intro-text">
+      <p class="eyebrow">El Woroud</p>
+      <h2>L'élégance dans<br>chaque détail.</h2>
+      <div class="gold-line"></div>
+      <p>Niché à Blida, entre les contreforts de l'Atlas et le parfum des orangeraies, El Woroud réunit le raffinement d'une demeure française et la chaleur de l'hospitalité algérienne. Chaque espace a été pensé pour offrir calme, matière noble et lumière feutrée — une adresse pensée pour ceux qui voyagent avec exigence.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HIGHLIGHTS ============ -->
+<section class="highlights">
+  <div class="h-grid">
+    <div class="h-card">
+      <div class="h-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M4 21V10l8-6 8 6v11M9 21v-6h6v6"/></svg></div>
+      <h3>Séjour</h3>
+      <p>Chambres, suites et appartements</p>
+    </div>
+    <div class="h-card">
+      <div class="h-icon"><svg viewBox="0 0 24 24"><path d="M6 2v20M6 2c0 4 4 4 4 0M18 2v8a4 4 0 01-8 0V2M18 12v10"/></svg></div>
+      <h3>Gastronomie</h3>
+      <p>Restaurants et espaces de restauration</p>
+    </div>
+    <div class="h-card">
+      <div class="h-icon"><svg viewBox="0 0 24 24"><path d="M3 15s2-2 5-2 4 2 7 2 5-2 5-2M3 19s2-2 5-2 4 2 7 2 5-2 5-2M7 11a3 3 0 116 0c0 2-3 3-3 5"/></svg></div>
+      <h3>Bien-être</h3>
+      <p>Piscine intérieure, fitness et sauna</p>
+    </div>
+    <div class="h-card">
+      <div class="h-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5M9 12h.01M15 12h.01M9 9h.01M15 9h.01"/></svg></div>
+      <h3>Événements</h3>
+      <p>Conférences, réunions et réceptions</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROOMS ============ -->
+<section class="rooms" id="chambres">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Chambres &amp; Suites</p>
+      <h2>Votre chambre vous attend.</h2>
+    </div>
+    <div class="rooms-grid">
+
+      <div class="room-card">
+        <div class="ph"><div class="ph-label">Photo · Chambre<span>à intégrer</span></div></div>
+        <div class="room-overlay"></div>
+        <div class="room-frame"></div>
+        <div class="room-info">
+          <p class="rtag">Confort</p>
+          <h3>Chambre</h3>
+          <p>Un cadre intime, boiseries sombres et lumière chaude.</p>
+          <div class="room-discover">Découvrir →</div>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <div class="ph"><div class="ph-label">Photo · Chambre Double<span>à intégrer</span></div></div>
+        <div class="room-overlay"></div>
+        <div class="room-frame"></div>
+        <div class="room-info">
+          <p class="rtag">Confort</p>
+          <h3>Chambre Double</h3>
+          <p>Espace généreux pensé pour deux voyageurs.</p>
+          <div class="room-discover">Découvrir →</div>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <div class="ph"><div class="ph-label">Photo · Chambre Familiale<span>à intégrer</span></div></div>
+        <div class="room-overlay"></div>
+        <div class="room-frame"></div>
+        <div class="room-info">
+          <p class="rtag">Famille</p>
+          <h3>Chambre Familiale</h3>
+          <p>Convivialité et espace pour toute la famille.</p>
+          <div class="room-discover">Découvrir →</div>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <div class="ph"><div class="ph-label">Photo · Suite<span>à intégrer</span></div></div>
+        <div class="room-overlay"></div>
+        <div class="room-frame"></div>
+        <div class="room-info">
+          <p class="rtag">Prestige</p>
+          <h3>Suite</h3>
+          <p>Un salon privé, une atmosphère résolument royale.</p>
+          <div class="room-discover">Découvrir →</div>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <div class="ph"><div class="ph-label">Photo · Appartement<span>à intégrer</span></div></div>
+        <div class="room-overlay"></div>
+        <div class="room-frame"></div>
+        <div class="room-info">
+          <p class="rtag">Exclusif</p>
+          <h3>Appartement</h3>
+          <p>Une adresse pour les séjours prolongés, tout confort.</p>
+          <div class="room-discover">Découvrir →</div>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <div class="ph"><div class="ph-label">Photo · Vue d'ensemble<span>à intégrer</span></div></div>
+        <div class="room-overlay"></div>
+        <div class="room-frame"></div>
+        <div class="room-info">
+          <p class="rtag">Toutes les catégories</p>
+          <h3>Explorer</h3>
+          <p>Comparez toutes nos chambres et suites disponibles.</p>
+          <div class="room-discover">Voir tout →</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="rooms-more"><a href="#" class="btn-outline">Réserver une chambre</a></div>
+  </div>
+</section>
+
+<!-- ============ DARK BOOKING CTA ============ -->
+<section class="cta-dark">
+  <div class="wrap">
+    <p class="eyebrow">Réservation</p>
+    <h2>Votre séjour commence ici.</h2>
+    <div class="form-panel">
+      <div class="b-field"><label>Arrivée</label><div class="val">Choisir</div></div>
+      <div class="b-field"><label>Départ</label><div class="val">Choisir</div></div>
+      <div class="b-field"><label>Adultes</label><div class="val">2</div></div>
+      <div class="b-field"><label>Enfants</label><div class="val">0</div></div>
+      <div class="b-field" style="border-right:none;">
+        <button class="btn-gold" style="width:100%; text-align:center;">Rechercher</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GASTRONOMY ============ -->
+<section class="gastro" id="gastronomie">
+  <div class="wrap">
+    <div class="gastro-top">
+      <p class="eyebrow">Gastronomie</p>
+      <h2>Une table à la hauteur du séjour.</h2>
+    </div>
+    <div class="gastro-grid">
+      <div class="ph big"><div class="ph-label">Photo · Restaurant<span>à intégrer</span></div></div>
+      <div class="gastro-side">
+        <div class="ph"><div class="ph-label">Photo · Salon de thé<span>à intégrer</span></div></div>
+        <div class="ph"><div class="ph-label">Photo · Table dressée<span>à intégrer</span></div></div>
+      </div>
+    </div>
+    <div class="gastro-tags">
+      <span class="tag-pill">Restaurants</span>
+      <span class="tag-pill">Cafétéria</span>
+      <span class="tag-pill">Salon de thé</span>
+      <span class="tag-pill">Pizzeria</span>
+    </div>
+    <div style="text-align:center; margin-top:44px;">
+      <a href="#" class="btn-glass">Découvrir nos espaces</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WELLNESS ============ -->
+<section class="wellness" id="bien-etre">
+  <div class="wrap well-grid">
+    <div class="well-photo">
+      <div class="ph"><div class="ph-label">Photo · Piscine intérieure<span>à intégrer</span></div></div>
+    </div>
+    <div class="well-text">
+      <p class="eyebrow">Bien-être</p>
+      <h2>Prenez le temps<br>de ralentir.</h2>
+      <ul class="well-list">
+        <li><span class="dot"></span> Piscine intérieure</li>
+        <li><span class="dot"></span> Salle de sport</li>
+        <li><span class="dot"></span> Sauna</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EVENTS ============ -->
+<section class="events" id="evenements">
+  <div class="wrap events-grid">
+    <div class="events-text">
+      <p class="eyebrow">Événements</p>
+      <h2>Des moments qui méritent leur cadre.</h2>
+      <p>Conférences professionnelles, réunions d'affaires ou réceptions privées — nos espaces conjuguent élégance patrimoniale et exigence opérationnelle.</p>
+      <div class="events-tags">
+        <span>Conférences</span>
+        <span>Réunions</span>
+        <span>Événements privés</span>
+        <span>Ballroom</span>
+      </div>
+      <a href="#" class="btn-outline">Organiser un événement</a>
+    </div>
+    <div class="events-photo">
+      <div class="ph"><div class="ph-label">Photo · Salle de réception<span>à intégrer</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="gallery" id="experience">
+  <div class="gallery-head">
+    <div>
+      <p class="eyebrow">L'expérience El Woroud</p>
+      <h2>Un regard sur la maison.</h2>
+    </div>
+    <p style="font-size:12.5px; color:rgba(247,242,233,0.5); letter-spacing:0.04em;">Faites glisser pour explorer →</p>
+  </div>
+  <div class="gallery-track">
+    <div class="gallery-item"><div class="ph"><div class="ph-label">Escalier<span>à intégrer</span></div></div></div>
+    <div class="gallery-item"><div class="ph"><div class="ph-label">Lustre<span>à intégrer</span></div></div></div>
+    <div class="gallery-item"><div class="ph"><div class="ph-label">Chambre<span>à intégrer</span></div></div></div>
+    <div class="gallery-item"><div class="ph"><div class="ph-label">Restaurant<span>à intégrer</span></div></div></div>
+    <div class="gallery-item"><div class="ph"><div class="ph-label">Détail architectural<span>à intégrer</span></div></div></div>
+    <div class="gallery-item"><div class="ph"><div class="ph-label">Tapis &amp; boiseries<span>à intégrer</span></div></div></div>
+  </div>
+</section>
+
+<!-- ============ LOCATION ============ -->
+<section class="location">
+  <div class="wrap loc-grid">
+    <div class="loc-text">
+      <p class="eyebrow">Localisation</p>
+      <h2>Au cœur de Blida.</h2>
+      <p>El Woroud vous accueille à Blida, la ville des roses, aux portes de l'Atlas blidéen — une situation privilégiée entre nature et vie urbaine.</p>
+      <a href="#" class="btn-outline">Voir l'itinéraire</a>
+    </div>
+    <div class="map-box">
+      <div class="map-pin">
+        <div class="pin-dot"></div>
+        <div class="pin-label">El Woroud · Blida</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testi">
+  <div class="wrap">
+    <div class="testi-head">
+      <p class="eyebrow">Témoignages</p>
+      <h2>Une expérience que l'on aime retrouver.</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>« Exemple d'avis — contenu à remplacer par un témoignage vérifié une fois disponible. »</p>
+        <div class="testi-name">Nom du client</div>
+        <div class="testi-role">Espace réservé</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>« Exemple d'avis — contenu à remplacer par un témoignage vérifié une fois disponible. »</p>
+        <div class="testi-name">Nom du client</div>
+        <div class="testi-role">Espace réservé</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>« Exemple d'avis — contenu à remplacer par un témoignage vérifié une fois disponible. »</p>
+        <div class="testi-name">Nom du client</div>
+        <div class="testi-role">Espace réservé</div>
+      </div>
+    </div>
+    <p class="testi-note">Espaces réservés — à remplacer par des avis clients réels et vérifiés.</p>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta">
+  <div class="wrap">
+    <p class="eyebrow">El Woroud · Zaim Mohamed</p>
+    <h2>Entrez dans l'univers<br>El Woroud.</h2>
+    <p>Réservez votre prochain séjour à Blida.</p>
+    <div class="final-ctas">
+      <a href="#reserver" class="btn-gold">Réserver</a>
+      <a href="#decouvrir" class="btn-glass">Explorer l'hôtel</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="name">EL WOROUD</div>
+        <div class="group">Zaim Mohamed</div>
+        <p>Un hôtel de charme au cœur de Blida, entre élégance française et hospitalité algérienne.</p>
+      </div>
+      <div class="f-col">
+        <h4>Hôtel</h4>
+        <ul>
+          <li><a href="#chambres">Chambres</a></li>
+          <li><a href="#experience">Expérience</a></li>
+          <li><a href="#gastronomie">Gastronomie</a></li>
+          <li><a href="#bien-etre">Bien-être</a></li>
+          <li><a href="#evenements">Événements</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Réservation</h4>
+        <ul>
+          <li><a href="#reserver">Réserver</a></li>
+          <li><a href="#reserver">Disponibilité</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Le groupe</h4>
+        <ul>
+          <li><a href="#">Zaim Mohamed</a></li>
+          <li><a href="#">Nos établissements</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Langues</h4>
+        <ul>
+          <li><a href="#">FR</a></li>
+          <li><a href="#">AR</a></li>
+          <li><a href="#">EN</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© El Woroud — Zaim Mohamed</p>
+      <div class="footer-legal">
+        <a href="#">Confidentialité</a>
+        <a href="#">Conditions</a>
+        <a href="#">Mentions légales</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-book"><button>Réserver</button></div>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive:true });
+
+  // mobile nav toggle -> smooth-scrolls handled by anchors already; simple show/hide could be added later
+  const toggle = document.querySelector('.nav-toggle');
+  if(toggle){
+    toggle.addEventListener('click', () => {
+      document.querySelector('.nav-links').style.display =
+        document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex';
+    });
+  }
+</script>
+
+</body>
+</html>
